@@ -1,10 +1,11 @@
 App.Views.Login = Backbone.View.extend({
   events: {
-            "submit form": "login"
-          },
+    "submit form": "login"
+  },
+
   initialize: function() {
-                this.render();
-              },
+    this.render();
+  },
 
   login: function() {
      var self = this;
@@ -12,7 +13,7 @@ App.Views.Login = Backbone.View.extend({
      api_key = this.$('[name=api_key]').val();
      localStorage.setItem("username", JSON.stringify(username));
      localStorage.setItem("api_key", JSON.stringify(api_key));
-     Backbone.history.saveLocation('feeds');
+     Backbone.history.saveLocation('#feeds');
   },
 
   render: function() {
