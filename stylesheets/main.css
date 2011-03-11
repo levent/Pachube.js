@@ -1,0 +1,52 @@
+body {
+  font-family: Georgia;
+  font-size: 1.6em;
+  margin: 20px;
+}
+
+h4 {
+  margin: 10px 0 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  background-color: #eee;
+}
+
+ul {
+  list-style: none;
+  padding: 0 0 0 10px;
+  margin: 0 0 10px 0;
+}
+
+label {
+  display: block;
+  float: left;
+  text-align: right;
+  margin-right: 10px;
+  font-size: 1.6em;
+  width: 20%;
+}
+
+input[type=text] {
+  margin-right: 10px;
+  font-size: 1.6em;
+  width: 60%;
+  
+}
+
+input[type=submit] {
+  clear:both;
+  font-size: 200%;
+}
+
+.finger {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  padding-right: 10px;
+}
+
+.fingerwrap:hover .finger {
+  opacity: 1;
+}

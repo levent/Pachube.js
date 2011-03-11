@@ -914,7 +914,7 @@
       type:         type,
       contentType:  'application/json',
       data:         modelJSON,
-      dataType:     'json',
+      dataType:     'jsonp',
       processData:  false,
       success:      success,
       error:        error

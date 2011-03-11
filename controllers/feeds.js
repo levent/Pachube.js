@@ -1,15 +1,15 @@
 App.Controllers.Feeds = Backbone.Controller.extend({
   routes: {
-            "feeds/:id": "edit",
-            "feeds":     "index",
-            "feeds/new": "newFeed"  
+            "": "config",
+            "feeds/:id": "show",
+            "feeds":     "index"
           },
 
-      edit: function(id) {
+      show: function(id) {
         var feed = new Feed({ id: id });
         feed.fetch({
-          success: function(model: resp) {
-                     new App.Views.Edit({ model: feed });
+          success: function(model, resp) {
+                     new App.Views.Show({ model: feed });
                    },
           error: function() {
                    new Error({ message: 'Sorry I could not find that feed' });
@@ -20,19 +20,24 @@ App.Controllers.Feeds = Backbone.Controller.extend({
       },
 
       index: function() {
-        $.getJSON('/feeds', function(data) {
-          if(data) {
-            var feeds = _(data).map(function(i) { return new Feed(i); });
-            new App.Views.Index({ feeds: feeds });
-          } else {
-            new Error({ message: "Sorry I couldn't load your feeds" });
-          }
+        var username = localStorage.getItem("username");
+        var api_key = localStorage.getItem("api_key");
+        $.ajax({
+          url: "http://api.pachube.com/v2/feeds.json?user=" + JSON.parse(username) + "&api_key=" + JSON.parse(api_key),
+          success: function(data) {
+            if(data["results"]) {
+              var feeds = _(data["results"]).map(function(i) { return new Feed(i); });
+              new App.Views.Index({ feeds: feeds });
+            } else {
+              new Error({ message: "Sorry I couldn't load your feeds" });
+            }
+          },
+         dataType: 'jsonp'
         });
       },
 
-      newFeed: function() {
-        new App.Views.Edit({ model: new Feed() });
+      config: function() {
+        new App.Views.Login({});
       }
-
 });
 
