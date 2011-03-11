@@ -4,7 +4,7 @@ App.Controllers.Login = Backbone.Controller.extend({
           },
 
   login: function() {
-       new App.Views.Login({ model: new User() });
+       new App.Views.Login({ });
      }
 });
 
